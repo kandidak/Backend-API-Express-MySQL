@@ -1,3 +1,9 @@
+GET http://localhost:5000/maincontent
+
+###
+GET http://localhost:5000/main-title
+
+###
 GET http://localhost:5000/users
 
 ###
