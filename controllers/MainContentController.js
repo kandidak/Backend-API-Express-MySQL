@@ -51,7 +51,7 @@ export const getMainContentByTitle = async(req, res) =>{
 export const createMainContent = async(req, res) =>{
     try {
         await MainContent.create(req.body);
-        res.status(201).json({msg: "Materi Created"});
+        res.status(201).json({msg: "Content Created"});
     } catch (error) {
         console.log(error.message);
     }
@@ -64,7 +64,7 @@ export const updateMainContent = async(req, res) =>{
                 id: req.params.id
             }
         });
-        res.status(200).json({msg: "Materi Updated"});
+        res.status(200).json({msg: "Content Updated"});
     } catch (error) {
         console.log(error.message);
     }
@@ -77,7 +77,7 @@ export const deleteMainContent = async(req, res) =>{
                 id: req.params.id
             }
         });
-        res.status(200).json({msg: "Materi Deleted"});
+        res.status(200).json({msg: "Content Deleted"});
     } catch (error) {
         console.log(error.message);
     }

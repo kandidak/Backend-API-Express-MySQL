@@ -1,12 +1,17 @@
-import {Sequelize} from "sequelize";
+import {Sequelize, UUID, UUIDV4} from "sequelize";
 import db from "../config/Database.js";
 import MainTitle from "./MainTitleModel.js";
 import MainTujuan from "./MainTujuanModel.js";
 
 const {DataTypes} = Sequelize;
 
-const MainContent = db.define('main-contents',{
-    idJudul: DataTypes.INTEGER,
+const MainContent = db.define('maincontents',{
+    id: {
+        type: UUID,
+        defaultValue: UUIDV4,
+        allowNull: false,
+        primaryKey: true
+      },
     listMateri: DataTypes.STRING,
 },{
     freezeTableName:true
