@@ -1,13 +1,17 @@
 import express from 'express';
-import { uploadFile, downloadFile } from '../controllers/FileController';
+import multer from 'multer';
+import FileUploadController from '../controllers/FileUploadController.js';
+
+const storage = multer.memoryStorage();
 
 const router = express.Router();
-const upload = require('../middlewares/upload');
+const upload = multer({ storage: storage });
 
 // File upload route
-router.post('/upload', upload.single('pdf_file'), uploadFile);
+// router.post('/upload', upload.single('file'), FileUploadController.uploadFile);
+router.post('/upload', upload.single("file"), FileUploadController.uploadFile);
 
 // File download route
-router.get('/download/:fileId', downloadFile);
+router.get('/download/:fileName', FileUploadController.downloadFile);
 
 export default router;

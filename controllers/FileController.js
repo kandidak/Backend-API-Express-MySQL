@@ -1,47 +1,64 @@
-import File from "../models/Files";
+// import admin from "firebase-admin";
+import MainTitle from "../models/MainTitleModel.js";
+import fs from "fs";
+import multer from "multer";
 
-export const uploadFile = async (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ error: 'No file uploaded.' });
-  }
+// admin.initializeApp({
+//   credential: admin.credential.cert(firebaseConfig)
+// });
 
-  try {
-    const fileData = {
-      fileName: req.file.originalname,
-      filePath: req.file.path,
-      uploadDate: new Date().toISOString(),
-    };
+// const bucket = admin.storage().bucket();
 
-    const newFile = await File.create(fileData);
 
-    return res.status(200).json({ message: 'File uploaded successfully.', file: newFile });
-  } catch (err) {
-    console.error('Error saving file information to the database:', err);
-    return res.status(500).json({ error: 'Failed to save file information to the database.' });
-  }
-};
+class FileController {
+  static async uploadFile(req, res) {
+    try {
+      const file = req.file;
+      const path = "C:\wwwroot\dhifarindo\files";
 
-export const downloadFile = async (req, res) => {
-  const fileId = req.params.fileId;
+const maxSize = 2 * 1024 * 1024;
 
-  try {
-    const file = await File.findById(fileId);
-
-    if (!file) {
-      return res.status(404).json({ error: 'File not found.' });
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, __dirname+"/upload");
+//   },
+//   filename: (req, file, cb) => {
+//     console.log(file.originalname);
+//     cb(null, file.originalname);
+//   },
+// });
+// console.log('asd',file);
+let uploadFile = multer({
+  storage: storage,
+  limits: { fileSize: maxSize },
+});
+fs.copyFile(file.originalname, path);
+  
+res.status(200).json({ message: "SUCCESS" });
+    } catch (error) {
+      console.error("Error storing file:", error);
+      res.status(500).json({ error: "Error storing file" });
     }
-
-    const filePath = file.filePath;
-
-    // Send the file as a response to the client
-    res.download(filePath, file.fileName, (err) => {
-      if (err) {
-        console.error('Error downloading file:', err);
-        return res.status(500).json({ error: 'Failed to download the file.' });
-      }
-    });
-  } catch (err) {
-    console.error('Error retrieving file information from the database:', err);
-    return res.status(500).json({ error: 'Failed to retrieve file information from the database.' });
   }
-};
+
+  static async downloadFile(req, res) {
+    const fileId = req.params.id;
+
+    try {
+      const mainTitle = await MainTitle.findByPk(fileId);
+      if (!mainTitle) {
+        res.status(404).json({ error: "File not found" });
+        return;
+      }
+
+      // Implement logic to serve/download the file
+      // Here, we'll just return the file name for demonstration
+      res.status(200).json({ fileName: mainTitle.title });
+    } catch (error) {
+      console.error("Error fetching file name:", error);
+      res.status(500).json({ error: "Error fetching file name" });
+    }
+  }
+}
+
+export default FileController;
