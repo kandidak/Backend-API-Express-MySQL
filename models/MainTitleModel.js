@@ -1,6 +1,6 @@
-import { Sequelize, UUID, UUIDV4 } from "sequelize";
-import db from "../config/Database.js";
-import MainContent from "./MainContentModel.js";
+const { Sequelize, UUID, UUIDV4 } = require("sequelize");
+const db = require("../config/Database.js");
+const MainContent = require("./MainContentModel.js");
 
 const { DataTypes } = Sequelize;
 
@@ -14,6 +14,10 @@ const MainTitle = db.define(
       primaryKey: true
     },
     title: DataTypes.STRING,
+    images: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     deletedAt: {
       type: DataTypes.DATE,
       allowNull: true,
@@ -26,7 +30,7 @@ const MainTitle = db.define(
   },
 );
 
-export default MainTitle;
+module.exports = MainTitle;
 
 (async () => {
   await db.sync();

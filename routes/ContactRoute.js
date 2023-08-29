@@ -1,11 +1,11 @@
-import express from "express";
-import {
-    getContacts, 
+const express = require("express");
+const {
+    getContacts,
     getContactsById,
     createContacts,
     updateContacts,
     deleteContacts
-} from "../controllers/ContactController.js";
+} = require("../controllers/ContactController.js");
 
 const router = express.Router();
 
@@ -15,4 +15,4 @@ router.post('/contacts', createContacts);
 router.patch('/contacts/:id', updateContacts);
 router.delete('/contacts/:id', deleteContacts);
 
-export default router;
+module.exports = router;

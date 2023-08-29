@@ -1,5 +1,5 @@
-import { Sequelize, UUID, UUIDV4 } from "sequelize";
-import db from "../config/Database";
+const { Sequelize, UUID, UUIDV4 } = require("sequelize");
+const db = require("../config/Database");
 
 class FileModel {
   static insertFile(fileName, downloadUrl) {
@@ -31,4 +31,4 @@ class FileModel {
   }
 }
 
-export default FileModel;
+module.exports = FileModel;

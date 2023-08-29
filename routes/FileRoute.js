@@ -1,6 +1,6 @@
-import express from 'express';
-import multer from 'multer';
-import FileUploadController from '../controllers/FileUploadController.js';
+const express = require('express');
+const multer = require('multer');
+const FileController = require('../controllers/FileController.js');
 
 const storage = multer.memoryStorage();
 
@@ -9,9 +9,9 @@ const upload = multer({ storage: storage });
 
 // File upload route
 // router.post('/upload', upload.single('file'), FileUploadController.uploadFile);
-router.post('/upload', upload.single("file"), FileUploadController.uploadFile);
+router.post('/upload', upload.single("file"), FileController.uploadFile);
 
 // File download route
-router.get('/download/:fileName', FileUploadController.downloadFile);
+router.get('/download/:fileName', FileController.downloadFile);
 
-export default router;
+module.exports = router;

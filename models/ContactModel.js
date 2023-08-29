@@ -1,21 +1,21 @@
-import {Sequelize} from "sequelize";
-import db from "../config/Database.js";
+const { Sequelize } = require("sequelize");
+const db = require("../config/Database.js");
 
-const {DataTypes} = Sequelize;
+const { DataTypes } = Sequelize;
 
-const Contact = db.define('contact',{
+const Contact = db.define('contact', {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
     companyName: DataTypes.STRING,
     numberOfEmployee: DataTypes.INTEGER,
     product: DataTypes.STRING,
-},{
-    freezeTableName:true
+}, {
+    freezeTableName: true
 });
 
-export default Contact;
+module.exports = Contact;
 
-(async()=>{
+(async () => {
     await db.sync();
 })();

@@ -1,6 +1,6 @@
-import MainContent from "../models/MainContentModel.js";
+const MainContent = require("../models/MainContentModel.js");
 
-export const getMainContent = async(req, res) =>{
+const getMainContent = async (req, res) => {
     try {
         const response = await MainContent.findAll();
         res.status(200).json(response);
@@ -9,10 +9,10 @@ export const getMainContent = async(req, res) =>{
     }
 }
 
-export const getMainContentByIdJudul = async(req, res) =>{
+const getMainContentByIdJudul = async (req, res) => {
     try {
         const response = await MainContent.findAll({
-            where:{
+            where: {
                 idJudul: req.params.idJudul
             }
         });
@@ -22,10 +22,10 @@ export const getMainContentByIdJudul = async(req, res) =>{
     }
 }
 
-export const getMainContentById = async(req, res) =>{
+const getMainContentById = async (req, res) => {
     try {
         const response = await MainContent.findOne({
-            where:{
+            where: {
                 idJudul: req.params.id
             }
         });
@@ -35,10 +35,10 @@ export const getMainContentById = async(req, res) =>{
     }
 }
 
-export const getMainContentByTitle = async(req, res) =>{
+const getMainContentByTitle = async (req, res) => {
     try {
         const response = await MainContent.findAll({
-            where:{
+            where: {
                 main_title: req.params.main_title
             }
         });
@@ -48,37 +48,47 @@ export const getMainContentByTitle = async(req, res) =>{
     }
 }
 
-export const createMainContent = async(req, res) =>{
+const createMainContent = async (req, res) => {
     try {
         await MainContent.create(req.body);
-        res.status(201).json({msg: "Content Created"});
+        res.status(201).json({ msg: "Content Created" });
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const updateMainContent = async(req, res) =>{
+const updateMainContent = async (req, res) => {
     try {
-        await MainContent.update(req.body,{
-            where:{
+        await MainContent.update(req.body, {
+            where: {
                 id: req.params.id
             }
         });
-        res.status(200).json({msg: "Content Updated"});
+        res.status(200).json({ msg: "Content Updated" });
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const deleteMainContent = async(req, res) =>{
+const deleteMainContent = async (req, res) => {
     try {
         await MainContent.destroy({
-            where:{
+            where: {
                 id: req.params.id
             }
         });
-        res.status(200).json({msg: "Content Deleted"});
+        res.status(200).json({ msg: "Content Deleted" });
     } catch (error) {
         console.log(error.message);
     }
 }
+
+module.exports = {
+    getMainContent,
+    getMainContentByIdJudul,
+    getMainContentById,
+    getMainContentByTitle,
+    createMainContent,
+    updateMainContent,
+    deleteMainContent,
+};

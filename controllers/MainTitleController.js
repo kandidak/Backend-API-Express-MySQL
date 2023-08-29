@@ -1,9 +1,9 @@
-import MainContent from "../models/MainContentModel.js";
-import MainTitle from "../models/MainTitleModel.js";
-import MainTujuan from "../models/MainTujuanModel.js";
-import { UUID } from "sequelize";
+const MainContent = require("../models/MainContentModel.js");
+const MainTitle = require("../models/MainTitleModel.js");
+const MainTujuan = require("../models/MainTujuanModel.js");
+const { UUID } = require("sequelize");
 
-export const getMainTitle = async (req, res) => {
+const getMainTitle = async (req, res) => {
   try {
     const response = await MainTitle.findAll({
       paranoid: false,
@@ -16,7 +16,7 @@ export const getMainTitle = async (req, res) => {
   }
 };
 
-export const getMainTitleById = async (req, res) => {
+const getMainTitleById = async (req, res) => {
   try {
     const response = await MainTitle.findOne({
       where: {
@@ -30,7 +30,7 @@ export const getMainTitleById = async (req, res) => {
   }
 };
 
-export const createMainTitle = async (req, res) => {
+const createMainTitle = async (req, res) => {
   try {
     const body = {
       ...req.body,
@@ -43,7 +43,7 @@ export const createMainTitle = async (req, res) => {
   }
 };
 
-export const updateMainTitle = async (req, res) => {
+const updateMainTitle = async (req, res) => {
   try {
     await MainTitle.update(req.body, {
       where: {
@@ -56,7 +56,7 @@ export const updateMainTitle = async (req, res) => {
   }
 };
 
-export const deleteMainTitle = async (req, res) => {
+const deleteMainTitle = async (req, res) => {
   try {
     const record = await MainTitle.findByPk(req.params.id);
     if (record) {
@@ -71,4 +71,12 @@ export const deleteMainTitle = async (req, res) => {
   } catch (error) {
     console.log(error.message);
   }
+};
+
+module.exports = {
+  getMainTitle,
+  getMainTitleById,
+  createMainTitle,
+  updateMainTitle,
+  deleteMainTitle,
 };

@@ -1,11 +1,11 @@
-import express from "express";
-import {
-    getMainTujuan, 
+const express = require("express");
+const {
+    getMainTujuan,
     getMainTujuanById,
     createMainTujuan,
     updateMainTujuan,
     deleteMainTujuan
-} from "../controllers/MainTujuanController.js";
+} = require("../controllers/MainTujuanController.js");
 
 const router = express.Router();
 
@@ -15,4 +15,4 @@ router.post('/main-tujuans', createMainTujuan);
 router.patch('/main-tujuans/:id', updateMainTujuan);
 router.delete('/main-tujuans/:id', deleteMainTujuan);
 
-export default router;
+module.exports = router;

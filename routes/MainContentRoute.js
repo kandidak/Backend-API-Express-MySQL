@@ -1,13 +1,13 @@
-import express from "express";
-import {
-    getMainContent, 
+const express = require("express");
+const {
+    getMainContent,
     getMainContentByIdJudul,
     getMainContentById,
     getMainContentByTitle,
     createMainContent,
     updateMainContent,
     deleteMainContent
-} from "../controllers/MainContentController.js";
+} = require("../controllers/MainContentController.js");
 
 const router = express.Router();
 
@@ -19,4 +19,4 @@ router.post('/main-contents', createMainContent);
 router.patch('/main-contents/:id', updateMainContent);
 router.delete('/main-contents/:id', deleteMainContent);
 
-export default router;
+module.exports = router;

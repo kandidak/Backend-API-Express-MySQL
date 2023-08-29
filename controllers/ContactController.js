@@ -1,6 +1,6 @@
-import Contact from "../models/ContactModel.js";
+const Contact = require("../models/ContactModel.js");
 
-export const getContacts = async(req, res) =>{
+const getContacts = async (req, res) => {
     try {
         const response = await Contact.findAll();
         res.status(200).json(response);
@@ -9,10 +9,10 @@ export const getContacts = async(req, res) =>{
     }
 }
 
-export const getContactsById = async(req, res) =>{
+const getContactsById = async (req, res) => {
     try {
         const response = await Contact.findOne({
-            where:{
+            where: {
                 id: req.params.id
             }
         });
@@ -22,37 +22,45 @@ export const getContactsById = async(req, res) =>{
     }
 }
 
-export const createContacts = async(req, res) =>{
+const createContacts = async (req, res) => {
     try {
         await Contact.create(req.body);
-        res.status(201).json({msg: "Contact Created"});
+        res.status(201).json({ msg: "Contact Created" });
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const updateContacts = async(req, res) =>{
+const updateContacts = async (req, res) => {
     try {
-        await Contact.update(req.body,{
-            where:{
+        await Contact.update(req.body, {
+            where: {
                 id: req.params.id
             }
         });
-        res.status(200).json({msg: "Contact Updated"});
+        res.status(200).json({ msg: "Contact Updated" });
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const deleteContacts = async(req, res) =>{
+const deleteContacts = async (req, res) => {
     try {
         await Contact.destroy({
-            where:{
+            where: {
                 id: req.params.id
             }
         });
-        res.status(200).json({msg: "Contact Deleted"});
+        res.status(200).json({ msg: "Contact Deleted" });
     } catch (error) {
         console.log(error.message);
     }
 }
+
+module.exports = {
+    getContacts,
+    getContactsById,
+    createContacts,
+    updateContacts,
+    deleteContacts,
+};

@@ -1,6 +1,6 @@
-import MainTujuan from "../models/MainTujuanModel.js";
+const MainTujuan = require("../models/MainTujuanModel.js");
 
-export const getMainTujuan = async(req, res) =>{
+const getMainTujuan = async (req, res) => {
     try {
         const response = await MainTujuan.findAll();
         res.status(200).json(response);
@@ -9,10 +9,10 @@ export const getMainTujuan = async(req, res) =>{
     }
 }
 
-export const getMainTujuanById = async(req, res) =>{
+const getMainTujuanById = async (req, res) => {
     try {
         const response = await MainTujuan.findAll({
-            where:{
+            where: {
                 idJudul: req.params.idJudul
             }
         });
@@ -22,37 +22,45 @@ export const getMainTujuanById = async(req, res) =>{
     }
 }
 
-export const createMainTujuan = async(req, res) =>{
+const createMainTujuan = async (req, res) => {
     try {
         await MainTujuan.create(req.body);
-        res.status(201).json({msg: "Tujuan Created"});
+        res.status(201).json({ msg: "Tujuan Created" });
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const updateMainTujuan = async(req, res) =>{
+const updateMainTujuan = async (req, res) => {
     try {
-        await MainTujuan.update(req.body,{
-            where:{
+        await MainTujuan.update(req.body, {
+            where: {
                 id: req.params.id
             }
         });
-        res.status(200).json({msg: "Tujuan Updated"});
+        res.status(200).json({ msg: "Tujuan Updated" });
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const deleteMainTujuan = async(req, res) =>{
+const deleteMainTujuan = async (req, res) => {
     try {
         await MainTujuan.destroy({
-            where:{
+            where: {
                 id: req.params.id
             }
         });
-        res.status(200).json({msg: "Tujuan Deleted"});
+        res.status(200).json({ msg: "Tujuan Deleted" });
     } catch (error) {
         console.log(error.message);
     }
 }
+
+module.exports = {
+    getMainTujuan,
+    getMainTujuanById,
+    createMainTujuan,
+    updateMainTujuan,
+    deleteMainTujuan,
+};

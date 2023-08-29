@@ -1,21 +1,21 @@
-import app from "../config/firebase.config.js";
-// import firebase from "firebase/app";
-import {
+const app = require("../config/firebase.config.js");
+// const firebase = require("firebase/app");
+const {
   getStorage,
   ref,
   uploadBytes,
   getDownloadURL,
   uploadBytesResumable,
-} from "firebase/storage";
-import multer from "multer";
-import MainTitle from "../models/MainTitleModel.js";
-import admin from "firebase-admin";
-import { initializeApp } from "firebase-admin/app";
-import * as storageAdmin from "firebase-admin/storage";
-// import * as serviceAccount from "../config/serviceAccountKey.json";
+} = require("firebase/storage");
+const multer = require("multer");
+const MainTitle = require("../models/MainTitleModel.js");
+const admin = require("firebase-admin");
+const { initializeApp } = require("firebase-admin/app");
+// const * as storageAdmin from "firebase-admin/storage";
+// const * as serviceAccount from "../config/serviceAccountKey.json";
 
 admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount), // Replace with your service account credentials
+  //   credential: admin.credential.cert(serviceAccount), // Replace with your service account credentials
   storageBucket: "gs://dhifarindo-365009.appspot.com/files/",
 });
 
@@ -64,7 +64,7 @@ class FileUploadController {
 
     const storage = getStorage();
     // const file = ref(storage, `files/${fileName}`);
-    const file = ref(storage, `https://firebasestorage.googleapis.com/b/bucket/o/files%20${fileName}`);  
+    const file = ref(storage, `https://firebasestorage.googleapis.com/b/bucket/o/files%20${fileName}`);
 
     // const file = bucket.getFilesStream({ prefix: fileName });
     // const asd = storageAdmin.getStorage();
@@ -93,4 +93,4 @@ class FileUploadController {
   }
 }
 
-export default FileUploadController;
+module.exports = FileUploadController;
