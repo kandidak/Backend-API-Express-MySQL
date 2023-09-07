@@ -17,7 +17,7 @@ class FileController {
       var path = 'C:/inetpub/wwwroot/dhifarindo/files';
       res.download(path + '/' + fileName, fileName, (err) => {
         if (err) {
-          res.status(500).send({ message: 'something wrong!' });
+          res.status(500).send({ message: `${err}` });
         }
       });
     } catch (error) {
