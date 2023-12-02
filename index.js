@@ -8,6 +8,7 @@ const ContactRoute = require("./routes/ContactRoute.js");
 const MainTitleRoute = require("./routes/MainTitleRoute.js");
 const MainTujuanRoute = require("./routes/MainTujuanRoute.js");
 const FileRoute = require("./routes/FileRoute.js");
+const AuthRoute = require("./routes/AuthRoute.js")
 
 // const path = require('path');
 const app = express();
@@ -19,6 +20,7 @@ app.use(MainTitleRoute);
 app.use(MainTujuanRoute);
 app.use(ContactRoute);
 app.use(FileRoute);
+app.use(AuthRoute)
 
 //Multer config for file uploads
 const storage = multer.diskStorage({
