@@ -58,7 +58,7 @@ const deleteUser = async (req, res) => {
   }
 };
 
-async function authenticateUser({ username, password }) {
+async function authenticateUser({ username, password }, res) {
   const user = await User.findOne({
     where: {
       user_name: username,

@@ -19,7 +19,7 @@ async function login(req, res) {
     }
   } catch (error) {
     console.error("Authentication Error:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: "Invalid username or password" });
   }
 }
 

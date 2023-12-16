@@ -14,12 +14,17 @@ class FileController {
     const fileName = req.params.fileName;
 
     try {
-      var path = 'C:/inetpub/wwwroot/dhifarindo/files';
-      res.download(path + '/' + fileName, fileName, (err) => {
-        if (err) {
-          res.status(500).send({ message: `${err}` });
-        }
-      });
+      const serverDomain = "api.dhifarindoglobal.com";
+      const filePath = '/dhifarindo/files'
+      const fileUrl = `${serverDomain}${filePath}/${fileName}`;
+      res.redirect(fileUrl);
+
+      // var path = 'C:/inetpub/wwwroot/dhifarindo/files';
+      // res.download(path + '/' + fileName, fileName, (err) => {
+      //   if (err) {
+      //     res.status(500).send({ message: `${err}` });
+      //   }
+      // });
     } catch (error) {
       console.error("Error fetching file name:", error);
       res.status(500).json({ error: "Error fetching file name" });

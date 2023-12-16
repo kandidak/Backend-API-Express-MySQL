@@ -40,5 +40,5 @@ const storage = multer.diskStorage({
 //Routes
 // const fileRoutes = require('./routes/fileRoutes');
 // app.use('/api', fileRoutes)
-
+app.get('/', (req, res) => res.send('Dhifarindo Global Server up and running...'));
 app.listen(5000, () => console.log('Server up and running...'));
