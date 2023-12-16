@@ -68,7 +68,7 @@ async function authenticateUser({ username, password }, res) {
   if (user && bcrypt.compareSync(password, user.password)) {
     return user;
   } else {
-    return res.status(401).json({ error: "Invalid credentials." });
+    return null
   }
 }
 

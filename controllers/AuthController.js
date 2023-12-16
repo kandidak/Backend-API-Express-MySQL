@@ -15,11 +15,11 @@ async function login(req, res) {
         message: "Login Successful!",
       });
     } else {
-      return res.status(401).json({ error: "Invalid credentials." });
+      return res.status(401).json({ error: "Invalid Username or Password." });
     }
   } catch (error) {
     console.error("Authentication Error:", error);
-    res.status(500).json({ error: "Invalid username or password" });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 }
 
