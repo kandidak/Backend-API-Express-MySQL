@@ -8,6 +8,7 @@ const User = db.define(
   "users",
   {
     name: DataTypes.STRING,
+    user_name: DataTypes.STRING,
     password: {
       type: DataTypes.STRING,
       set(value) {
