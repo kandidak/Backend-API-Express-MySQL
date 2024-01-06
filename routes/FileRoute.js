@@ -6,9 +6,9 @@ const router = express.Router();
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const serverDomain = "api.dhifarindoglobal.com";
-    const filePath = "/dhifarindo/files";
-    cb(null, serverDomain + filePath);
+    // const serverDomain = "api.dhifarindoglobal.com";
+    const filePath = "dhifarindo/files";
+    cb(null, filePath);
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);

@@ -1,6 +1,6 @@
 const { Sequelize } = require("sequelize");
 
-const db = new Sequelize('dhifarindo_global', 'root', '', {
+const db = new Sequelize('dhip2617_dhifarindo_global', 'dhip2617_admin', 'O&dWgw=OEngQ', {
     host: 'localhost',
     dialect: 'mysql'
 });
